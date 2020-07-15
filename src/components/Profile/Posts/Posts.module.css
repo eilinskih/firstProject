@@ -1,0 +1,39 @@
+
+  .posts form {
+      margin-bottom: 50px;
+  }
+  
+  .posts p {
+    color: #47525E;
+    font-family: Lato;
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 45px;
+    width: 244.5px;
+    text-align: left;
+  }
+  
+  textarea {
+      overflow: auto;
+      resize: none;
+      width: 100%;
+      height: 50px;
+  
+      background: #f6f6f6;
+      border: 1px solid #cecece;
+      border-radius: 8px;
+      padding: 8px 0 8px 10px;
+  }
+  
+  .button input{
+    background-color: royalblue;
+    width: 162px;
+    height: 36px;
+    float: right; 
+    color: #FFFFFF;
+    font-family: sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 33px;
+    text-align: center
+  }

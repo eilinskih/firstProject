@@ -1,0 +1,13 @@
+
+.logo a {
+    text-decoration: none;
+    font-size: 50px;
+    font-weight: 700;
+    font-family: sans-serif;
+    color: antiquewhite;
+    padding-left: 15px;
+  }
+  .header {
+  grid-area: h;
+  background-color: royalblue;
+  }

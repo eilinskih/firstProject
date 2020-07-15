@@ -1,0 +1,11 @@
+.dialoger_name a {
+    text-decoration: none;
+    color: black;
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.dialoger_name {
+padding: 10px;
+}
