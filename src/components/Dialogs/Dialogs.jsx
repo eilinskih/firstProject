@@ -21,6 +21,7 @@ let mesBody = event.target.value;
 props.dispatch(updateMessageActionCreator(mesBody));
     };
     
+    
     return (
         <div className={d.dialogs}>
             <div className={d.dialogers}>
