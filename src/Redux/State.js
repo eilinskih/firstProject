@@ -1,3 +1,6 @@
+import profileReducer from "./profileReducer"
+import dialogsReducer from "./dialogsReducer"
+
 export const addPostActionCreator = () => {
   return { type: 'ADD-POST' }
 }
@@ -43,30 +46,10 @@ return this._state;
   },
 
 dispatch(action) {
-if (action.type === 'ADD-POST') {
-  let newPost = {
-    id: 4,
-    message: this._state.profilePage.newPostText
-  };
-this._state.profilePage.posts.push(newPost);
-this._state.profilePage.newPostText = '';
-this.rerenderTree(this._state);
-}
-else if (action.type === 'UPDATE-TEXT') {
-  this._state.profilePage.newPostText = action.newText;
-  this.rerenderTree(this._state); 
-}
-else if (action.type === 'UPDATE-MMESSAGE') {
-  this._state.messagesPage.newMessageText = action.messageText;
-  this.rerenderTree(this._state)
-}
-else if (action.type === 'SEND-MESSAGE') {
-  let message = this._state.messagesPage.newMessageText;
-  this._state.messagesPage.newMessageText = '';
-  this._state.messagesPage.messagesData.push({id: 6, message: message});
-  this.rerenderTree(this._state);
-}
+  this._state.profilePage = profileReducer(this._state.profilePage, action);
+  this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
 },
+
 
    rerenderTree() {},
 
