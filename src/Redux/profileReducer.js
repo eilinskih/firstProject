@@ -13,6 +13,8 @@ const profileReducer = (state, action) => {
       case 'UPDATE-TEXT':
         state.newPostText = action.newText; 
     return state;
-};
+    default:
+      return state;
+}
 }
 export default profileReducer;

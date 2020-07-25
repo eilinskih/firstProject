@@ -6,8 +6,9 @@ const dialogsReducer = (state, action) => {
       return state;
       case 'SEND-MESSAGE': 
         let message = state.newMessageText;
-        state.newMessageText = '';
-        state.messagesData.push({id: 6, message: message});
+        state.messagesData.push({message: message});
+        return state;
+        default:
         return state;
       }
 }

@@ -48,6 +48,7 @@ return this._state;
 dispatch(action) {
   this._state.profilePage = profileReducer(this._state.profilePage, action);
   this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
+this.rerenderTree(this._state)
 },
 
 

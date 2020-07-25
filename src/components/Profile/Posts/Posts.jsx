@@ -10,7 +10,7 @@ function Posts(props) {
 
   let addPost = () => {
 props.dispatch(addPostActionCreator());
-//props.dispatch({ type: 'UPDATE-TEXT' }) = ('');
+
   }
 
   let postsElements = props.posts.map( post => <Post message={post.message} />);
