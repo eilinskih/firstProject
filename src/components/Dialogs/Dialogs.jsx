@@ -18,7 +18,7 @@ function Dialogs(props) {
     };
     
     let onNewMessageChange = (e) => {
-let mesBody = e.target.value; 
+let mesBody = e.currentTarget.value; 
 props.dispatch(updateMessageActionCreator(mesBody));
     };
     
@@ -32,7 +32,7 @@ props.dispatch(updateMessageActionCreator(mesBody));
             <div className={d.messages}>
                <div>{messagesElements}</div>
                <div>
-                   <div><textarea type="text" onChange={onNewMessageChange} value={newMessageText} placeholder='enter text'></textarea></div>
+                   <div><textarea type="text" onChange={onNewMessageChange} value={newMessageText}></textarea></div>
                <div><button onClick={onSendClick}>send</button></div>
                </div>
             </div>
