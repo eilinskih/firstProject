@@ -8,8 +8,6 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {BrowserRouter, Route} from 'react-router-dom';
-// eslint-disable-next-line
-import { addPost } from './Redux/State';
 
 function App(props) {
   return (
