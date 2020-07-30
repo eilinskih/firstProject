@@ -1,23 +1,6 @@
 import profileReducer from "./profileReducer"
 import dialogsReducer from "./dialogsReducer"
 
-export const addPostActionCreator = () => {
-  return { type: 'ADD-POST' }
-}
-
-export const updateNewTextActionCreator = (text) => {
-  return { type: 'UPDATE-TEXT', 
-  newText: text }
-}
-
-export const sendMessageActionCreator = () => {
-return {type: 'SEND-MESSAGE'}
-}
-
-export const updateMessageActionCreator = (mesBody) => {
-  return {type: 'UPDATE-MESSAGE', messageText: mesBody}
-}
-
 let store = {
   _state: {
     messagesPage: {
