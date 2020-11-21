@@ -1,6 +1,6 @@
 import React from 'react';
 import p from './Profile.module.css';
-import Posts from './Posts/Posts';
+import PostsContainer from './Posts/PostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 function Profile(props) {
@@ -9,7 +9,7 @@ function Profile(props) {
             < ProfileInfo username='Someone User' description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eligendi!' />
           
           <div className={p.posts}>
-          <Posts posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} dispatch= {props.dispatch}/>
+          <PostsContainer posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} dispatch= {props.dispatch}/>
           </div>
           </div>
 
