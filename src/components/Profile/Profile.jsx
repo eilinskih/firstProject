@@ -4,12 +4,14 @@ import PostsContainer from './Posts/PostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 function Profile(props) {
-    return  (
+    return  (<div>
+        <div className={p.image}><img alt='some img' src='https://media.sproutsocial.com/uploads/2018/04/Facebook-Ad-Sizes.png'></img></div>
         <div className={p.grid}>
             < ProfileInfo username='Someone User' description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eligendi!' />
           
           <div className={p.posts}>
           <PostsContainer posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} dispatch= {props.dispatch}/>
+          </div>
           </div>
           </div>
 

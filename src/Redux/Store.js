@@ -17,8 +17,8 @@ let store = {
   },
    profilePage: {
    posts: [
-     {message: "привет ежжи"},
-     {message: "держи краба"}
+     {message: "привет"},
+     {message: ""}
    ],
    newPostText: 'kama Pulya'
   }

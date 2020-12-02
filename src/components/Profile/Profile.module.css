@@ -1,4 +1,8 @@
 
+.image {
+width: 100%;
+
+}
 
 .grid{
   display: grid;
