@@ -6,12 +6,12 @@ import DialogsItem from './DialogsItem/DialogsItem';
 
 function Dialogs(props) {
 
-    let dialogsElements = props.dialogsData.map( (dialog) =>  < DialogsItem name={dialog.name} id={dialog.id} />);
+    let dialogsElements = props.dialogsPage.dialogsData.map( (dialog) =>  < DialogsItem name={dialog.name} id={dialog.id} />);
 
-    let messagesElements = props.messagesData.map( (message) => < Message message={message.message}/> );
+    let messagesElements = props.dialogsPage.messagesData.map( (message) => < Message message={message.message}/> );
     
 
-
+ 
     let onSendClick = () => {
         props.sendButton();
     };
@@ -31,7 +31,7 @@ props.changeMessage(mesBody);
             <div className={d.messages}>
                <div>{messagesElements}</div>
                <div>
-                   <div><textarea type="text" onChange={onNewMessageChange} value={props.newMessageText}></textarea></div>
+                   <div><textarea type="text" onChange={onNewMessageChange} value={props.dialogsPage.newMessageText}></textarea></div>
                <div><button onClick={onSendClick}>send</button></div>
                </div>
             </div>

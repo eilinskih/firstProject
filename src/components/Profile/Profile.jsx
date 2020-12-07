@@ -10,7 +10,7 @@ function Profile(props) {
             < ProfileInfo username='Someone User' description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eligendi!' />
           
           <div className={p.posts}>
-          <PostsContainer posts={props.profilePage.posts} newPostText={props.profilePage.newPostText} dispatch= {props.dispatch}/>
+          <PostsContainer/>
           </div>
           </div>
           </div>
