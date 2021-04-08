@@ -5,9 +5,8 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 function Profile(props) {
     return (<div>
-        <div className={p.image}><img alt='some img' src='https://media.sproutsocial.com/uploads/2018/04/Facebook-Ad-Sizes.png'></img></div>
         <div className={p.grid}>
-            < ProfileInfo username='Someone User' description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, eligendi!' />
+            < ProfileInfo profile={props.profile} status={props.status} changeStatus={props.changeStatus} />
 
             <div className={p.posts}>
                 <PostsContainer />

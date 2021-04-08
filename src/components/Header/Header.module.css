@@ -1,4 +1,13 @@
+ .header {
+  grid-area: h;
+  background-color: royalblue;
+  display: grid;
+  grid-template-areas: "l n";
+  }
 
+  .logo {
+   grid-area: l; 
+  }
 .logo a {
     text-decoration: none;
     font-size: 50px;
@@ -7,7 +16,28 @@
     color: antiquewhite;
     padding-left: 15px;
   }
-  .header {
-  grid-area: h;
-  background-color: royalblue;
+ 
+
+  .authBlock {
+    
+    grid-area: n;
   }
+  .authBlock a {
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: sans-serif;
+    color: antiquewhite;
+  float: right;
+  padding-right: 15px;
+}
+
+.authBlock span {
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 400;
+  font-family: sans-serif;
+  color: antiquewhite;
+float: right;
+padding-right: 15px;
+}

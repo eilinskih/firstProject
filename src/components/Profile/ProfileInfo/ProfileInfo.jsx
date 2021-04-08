@@ -1,15 +1,23 @@
 import React from 'react';
+import Preloader from '../../Preloader/Preloader';
 import p from './ProfileInfo.module.css';
+import ProfileStatus from '../ProfileStatus'
+
 
 
 function ProfileInfo(props) {
-    return  (
+    if (!props.profile) {
+        return <Preloader />
+    }
+    return (
         <div className={p.grid}>
-          <div className={p.avatar}><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSuPH7B65eKM-W4rrjLd_BTkw6-W8jVlHlXrOfKjeCxO2bUCt0&usqp=CAU" alt="pulya" /></div>
-          <div className={p.description}>{props.description}</div>
-    <div className={p.name}>{props.username}</div>
-          </div>
+            <div className={p.avatar}><img src={props.profile.photos.large} alt='avatar' />
+                <ProfileStatus status={props.status} changeStatus={props.changeStatus}/>
+            </div>
+            <div className={p.description}>{props.profile.lookingForAJobDescription}</div>
+            <div className={p.name}>{props.profile.fullName}</div>
+        </div>
     );
 }
 
-export default ProfileInfo ;
+export default ProfileInfo;
