@@ -1,4 +1,14 @@
+
+span {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+span:hover{
+cursor: pointer;
+}
+
 .selectedPage{
     font-weight: 700;
     cursor: pointer;
 }
+

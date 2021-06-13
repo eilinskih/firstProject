@@ -10,7 +10,7 @@ state = {
 
 changingStatusActive = () => {
     this.setState({
-     changingStatus: true   
+     changingStatus: true    
     })
 }
 

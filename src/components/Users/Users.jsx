@@ -1,22 +1,13 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import u from './Users.module.css';
+import Paginator from '../common/Paginator';
 
 
 function Users(props) {
-  let pageNumber = Math.ceil(props.totalCountUsers / props.pageSize)
-  let pages = [];
-  for (let i = 1; i <= pageNumber; i++) {
-    pages.push(i)
-  };
+ 
   return <div>
-    <div>
-
-      {pages.map(p => {
-        return <span className={props.currentPage === p && u.selectedPage} onClick={(e) => { props.onPageClick(p) }}>{p}</span>
-      })}
-    </div>
+    <Paginator totalCountItems={props.totalCountUsers} pageSize={props.pageSize} currentPage={props.currentPage} onPageClick={props.onPageClick}/>
     {props.users.map(u => <div key={u.id}>
       <NavLink to={'/profile/' + u.id}><div><img src={u.photos.small} alt='user avatar' /></div></NavLink>
       <div>{u.name}</div>

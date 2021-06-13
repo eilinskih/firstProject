@@ -2,18 +2,22 @@ import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
 import { BrowserRouter, Route } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {initialize} from './Redux/appReducer'
 import Preloader from './components/Preloader/Preloader';
+import { Provider } from 'react-redux';
+import store from './Redux/redux-store';
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const News = React.lazy(() => import('./components/News/News'));
+const Music = React.lazy(() => import('./components/Music/Music'));
+const Settings = React.lazy(() => import('./components/Settings/Settings'));
+const Login = React.lazy(() => import('./components/Login/Login'));
+
 
 class App extends React.Component {
 
@@ -24,24 +28,35 @@ class App extends React.Component {
   render() {
     if (!this.props.isInitialized) return <Preloader/>
     return (
-    <BrowserRouter>
       <div className="wrapper">
         <HeaderContainer />
         <Navbar />
         <div className="wrapper_content">
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/dialogs" render={() => <DialogsContainer />} />
           <Route path="/users" render={() => <UsersContainer />} />
+
+          <Suspense fallback={<Preloader/>}>
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/settings" render={() => <Settings />} />
           <Route path="/login" render={() => <Login />} />
+      </Suspense>
 
         </div>
       </div>
-    </BrowserRouter>
   );
 }}
 
 let mapStateToProps = (state) => ({isInitialized: state.app.isInitialized})
-export default compose(connect(mapStateToProps, {initialize}))(App);
+let AppContainer = compose(connect(mapStateToProps, {initialize}))(App);
+
+let AppRoot = (props) => {
+  return     <BrowserRouter>
+  <Provider store={store}>
+    <AppContainer/>
+  </Provider>
+    </BrowserRouter>
+
+}
+export default AppRoot;
