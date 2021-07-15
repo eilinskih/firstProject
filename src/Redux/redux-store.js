@@ -5,7 +5,7 @@ import dialogsReducer from "./dialogsReducer";
 import authReducer from "./authReducer";
 import appReducer from "./appReducer";
 import thunkMiddleware from "redux-thunk";
-import { reducer as formReducer} from "redux-form"
+import { reducer as formReducer } from "redux-form"
 
 
 let reducers = combineReducers({

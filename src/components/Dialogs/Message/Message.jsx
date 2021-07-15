@@ -3,7 +3,7 @@ import m from './Message.module.css';
 
 function Message(props) {
     return (
-<div className={m.message}>{props.message}</div>
+        <div className={m.message}>{props.message}</div>
     );
 }
 

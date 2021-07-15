@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import {initialize} from './Redux/appReducer'
+import { initialize } from './Redux/appReducer'
 import Preloader from './components/Preloader/Preloader';
 import { Provider } from 'react-redux';
 import store from './Redux/redux-store';
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   render() {
-    if (!this.props.isInitialized) return <Preloader/>
+    if (!this.props.isInitialized) return <Preloader />
     return (
       <div className="wrapper">
         <HeaderContainer />
@@ -35,28 +35,29 @@ class App extends React.Component {
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
           <Route path="/users" render={() => <UsersContainer />} />
 
-          <Suspense fallback={<Preloader/>}>
-          <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/settings" render={() => <Settings />} />
-          <Route path="/login" render={() => <Login />} />
-      </Suspense>
+          <React.Suspense fallback={<Preloader />}>
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            <Route path="/news" render={() => <News />} />
+            <Route path="/music" render={() => <Music />} />
+            <Route path="/settings" render={() => <Settings />} />
+            <Route path="/login" render={() => <Login />} />
+          </React.Suspense>
 
         </div>
       </div>
-  );
-}}
+    );
+  }
+}
 
-let mapStateToProps = (state) => ({isInitialized: state.app.isInitialized})
-let AppContainer = compose(connect(mapStateToProps, {initialize}))(App);
+let mapStateToProps = (state) => ({ isInitialized: state.app.isInitialized })
+let AppContainer = compose(connect(mapStateToProps, { initialize }))(App);
 
 let AppRoot = (props) => {
-  return     <BrowserRouter>
-  <Provider store={store}>
-    <AppContainer/>
-  </Provider>
-    </BrowserRouter>
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  </BrowserRouter>
 
 }
 export default AppRoot;

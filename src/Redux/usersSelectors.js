@@ -1,8 +1,8 @@
 import { createSelector } from "reselect"
 
 export const getUsersList = (state) => {
-  return  state.usersPage.users
-} 
+    return state.usersPage.users
+}
 
 export const getPageSize = (state) => {
     return state.usersPage.pageSize
@@ -24,7 +24,11 @@ export const getFollowFetching = (state) => {
     return state.usersPage.followFetching
 }
 
+export const getCurrentPortion = (state) => {
+    return state.usersPage.currentPortion
+}
+
 export const followSelector = createSelector(getFollowFetching, (followFetching) => {
     return followFetching
-} )
+})
 

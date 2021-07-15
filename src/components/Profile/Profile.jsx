@@ -6,7 +6,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 function Profile(props) {
     return (<div>
         <div className={p.grid}>
-            < ProfileInfo profile={props.profile} status={props.status} changeStatus={props.changeStatus} />
+            < ProfileInfo profile={props.profile} savePhoto={props.savePhoto} isOwnPage={props.isOwnPage} status={props.status} changeStatus={props.changeStatus} />
 
             <div className={p.posts}>
                 <PostsContainer />

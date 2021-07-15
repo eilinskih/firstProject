@@ -1,7 +1,7 @@
 import { authProfile } from "./authReducer"
 
 let initialState = {
-     isInitialized: false
+  isInitialized: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -25,9 +25,9 @@ const setInitialize = () => {
 //THUNK_CREATORS
 
 export const initialize = () => (dispatch) => {
-let promise = dispatch(authProfile())
-Promise.all([promise])
-.then(() => dispatch(setInitialize()))
+  let promise = dispatch(authProfile())
+  Promise.all([promise])
+    .then(() => dispatch(setInitialize()))
 }
 
 

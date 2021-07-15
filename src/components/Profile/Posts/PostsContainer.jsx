@@ -12,7 +12,7 @@ let mapStateToProps = (state) => {
 
 
 const PostsContainer = connect(mapStateToProps, {
-    addPost
-  })(Posts);
+  addPost
+})(Posts);
 
 export default PostsContainer;

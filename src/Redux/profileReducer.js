@@ -2,8 +2,6 @@ import { profileAPI, usersAPI } from "../api/api";
 
 let initialState = {
   posts: [
-    { message: "привет ежжи" },
-    { message: "держи краба" }
   ],
   profile: null,
   status: ""
@@ -22,17 +20,23 @@ const profileReducer = (state = initialState, action) => {
         posts: [...state.posts, newPost]
       }
 
-      case 'SETPROFILE':
-        return {
-          ...state,
-          profile: action.profile
-        }
+    case 'SETPROFILE':
+      return {
+        ...state,
+        profile: action.profile
+      }
 
-        case 'SETSTATUS':
-        return {
-          ...state,
-          status: action.status
-        }
+    case 'SETSTATUS':
+      return {
+        ...state,
+        status: action.status
+      }
+
+    case 'UPDATEUSERPHOTO':
+      return {
+        ...state,
+        profile: { ...state.profile, photos: action.photos }
+      }
 
     default:
       return state;
@@ -46,35 +50,48 @@ export const addPost = (postText) => {
 }
 
 const setProfile = (profile) => {
-  return { type: 'SETPROFILE', profile}
+  return { type: 'SETPROFILE', profile }
 }
 
 
 const setStatus = (status) => {
-  return {type: 'SETSTATUS', status}
+  return { type: 'SETSTATUS', status }
+}
+
+const updateUserPhoto = (photos) => {
+  return { type: 'UPDATEUSERPHOTO', photos }
 }
 
 //THUNK_CREATORS
 export const getUserProfile = (userId) => (dispatch) => {
   usersAPI.getUserProfile(userId)
-  .then(data => 
-    dispatch(setProfile(data)))
+    .then(data =>
+      dispatch(setProfile(data)))
 }
 
 export const getStatus = (userId) => (dispatch) => {
   profileAPI.getStatus(userId)
-  .then(data => {
-     dispatch(setStatus(data))
+    .then(data => {
+      dispatch(setStatus(data))
     })
 }
 
 export const changeStatus = (status) => (dispatch) => {
   profileAPI.setStatus(status)
-  .then(response => {
-    if (response.data.resultCode === 0) {
-      dispatch(setStatus(status))
-    }
-  })
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        dispatch(setStatus(status))
+      }
+    })
+}
+
+export const savePhoto = (photo) => (dispatch) => {
+  profileAPI.savePhoto(photo)
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        dispatch(updateUserPhoto(response.data.data.photos))
+      }
+    })
 }
 
 export default profileReducer;

@@ -1,7 +1,7 @@
 let initialState = {
   dialogsData: [
     { id: 1, name: 'Jeka' },
-    { id: 2, name: 'Olya' }, 
+    { id: 2, name: 'Olya' },
     { id: 3, name: 'Taisiya' }
   ],
 
@@ -15,7 +15,7 @@ const dialogsReducer = (state = initialState, action) => {
     case 'SEND-MESSAGE':
       return {
         ...state,
-        messagesData: [...state.messagesData, {message: action.message }]
+        messagesData: [...state.messagesData, { message: action.message }]
       }
 
     default:

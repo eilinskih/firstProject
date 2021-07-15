@@ -18,7 +18,7 @@ function Dialogs(props) {
     };
 
 
-    return ( 
+    return (
         <div className={d.dialogs}>
             <div className={d.dialogers}>
                 {dialogsElements}
@@ -27,7 +27,7 @@ function Dialogs(props) {
             <div className={d.messages}>
                 <div>{messagesElements}</div>
                 <div>
-                    <DialogsReduxForm onSubmit={onSubmit}/>
+                    <DialogsReduxForm onSubmit={onSubmit} />
                 </div>
             </div>
 
@@ -35,14 +35,14 @@ function Dialogs(props) {
     )
 }
 function MessageForm(props) {
-                return (
-                <form onSubmit={props.handleSubmit}>
-                    <div><Field component="textarea" type="text" name="message" placeholder="New messsage"/></div>
-                    <div><button >send</button></div>
-                    </form>)
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div><Field component="textarea" type="text" name="message" placeholder="New messsage" /></div>
+            <div><button >send</button></div>
+        </form>)
 }
 
-let DialogsReduxForm = reduxForm({form: "dialogs"})(MessageForm)
+let DialogsReduxForm = reduxForm({ form: "dialogs" })(MessageForm)
 
 
 export default Dialogs;
