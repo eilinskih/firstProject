@@ -4,27 +4,25 @@ import React, { useEffect, useState } from 'react';
 
 function ProfileStatusHooks(props) {
 
-    const [status, setStatus] = useState(props.status)
-    const [changingStatus, setChangingStatus] = useState(false)
+    let [status, setStatus] = useState(props.status)
+    let [changingStatus, setChangingStatus] = useState(false)
 
 
-    let changingStatusActive = () => {
+    const changingStatusActive = () => {
         setChangingStatus(true)
     }
 
-    let changingStatusStop = () => {
+    const changingStatusStop = () => {
         setChangingStatus(false)
-
         props.changeStatus(status)
     }
 
-    let statusChange = (e) => {
+    const statusChange = (e) => {
         setStatus(e.currentTarget.value)
     }
 
     useEffect(() => {
         setStatus(props.status)
-
     }, [props.status])
 
     return (

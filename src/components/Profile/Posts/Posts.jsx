@@ -24,6 +24,7 @@ function Posts(props) {
 
   let onSubmit = (formData) => {
     props.addPost(formData.postText);
+    formData.postText = "";
   }
   return (
     <div className={p.posts}>

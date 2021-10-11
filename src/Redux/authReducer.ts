@@ -1,5 +1,18 @@
+import { type } from 'os';
 import { stopSubmit } from "redux-form"
 import { authAPI } from "../api/api"
+import { AppDispatch } from './redux-store';
+
+const SETAUTHUSER = 'SETAUTHUSER'
+const ISFETCHING = 'ISFETCHING'
+
+type InitialStateType = {
+  id: null | number,
+  login: null | string,
+  email: null | string,
+  isFetch: boolean,
+  isAuth: boolean
+}
 
 let initialState = {
   id: null,
@@ -9,7 +22,7 @@ let initialState = {
   isAuth: false
 }
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: ActionsType): InitialStateType => {
 
   switch (action.type) {
     case 'SETAUTHUSER':
@@ -30,15 +43,21 @@ const authReducer = (state = initialState, action) => {
   }
 }
 // ACTION_CREATORS
-const setAuthProfile = (id, login, email, isAuth) => {
-  return { type: 'SETAUTHUSER', data: { id, login, email, isAuth } }
-}
 
-const isFetching = (isFetching) => ({ type: 'ISFETCHING', isFetching })
+type ActionsType = 
+|SetAuthProfileType
+|IsFetchingType
+
+const setAuthProfile = (id: null | number, login: null | string, email: null | string, isAuth: boolean): SetAuthProfileType => {
+  return { type: SETAUTHUSER, data: { id, login, email, isAuth } }
+}
+type SetAuthProfileType = {type: typeof SETAUTHUSER, data:{ id: null | number, login: null | string, email: null | string, isAuth: boolean}}
+
+const isFetching = (isFetching: boolean): IsFetchingType => ({ type: ISFETCHING, isFetching })
+type IsFetchingType = {type: typeof ISFETCHING, isFetching: boolean}
 
 //THUNK_CREATORS
-
-export const authProfile = () => (dispatch) => {
+export const authProfile = () => (dispatch: AppDispatch) => {
   return (
     authAPI.me().then(data => {
       if (data.resultCode === 0) {
@@ -48,9 +67,9 @@ export const authProfile = () => (dispatch) => {
         dispatch(isFetching(false))
       }
     }))
-}
+};
 
-export const authLogin = (email, password, rememberMe) => (dispatch) => {
+export const authLogin = (email: string, password: string, rememberMe: boolean) => (dispatch: AppDispatch) => {
   authAPI.login(email, password, rememberMe).then(response => {
     if (response.data.resultCode === 0) {
       dispatch(authProfile())
@@ -60,7 +79,7 @@ export const authLogin = (email, password, rememberMe) => (dispatch) => {
   })
 }
 
-export const authLogOut = () => (dispatch) => {
+export const authLogOut = () => (dispatch: AppDispatch) => {
   authAPI.logout().then(data => {
     if (data.resultCode === 0) {
       dispatch(setAuthProfile(null, null, null, false))

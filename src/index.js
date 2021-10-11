@@ -6,9 +6,7 @@ import './index.css';
 import AppRoot from './App';
 
   ReactDOM.render(
-    <React.StrictMode>
-        <AppRoot />
-    </React.StrictMode>,
+        <AppRoot />,
     document.getElementById('root')
   );
 // If you want your app to work offline and load faster, you can change

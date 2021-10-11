@@ -19,7 +19,7 @@ class ProfileContainer extends React.Component {
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
-    }
+    } 
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
@@ -31,14 +31,15 @@ class ProfileContainer extends React.Component {
                     this.props.history.push('/login')
                 }
             }
-            this.props.getUserProfile(userId)
+            this.props.getUserProfile(userId)  
             this.props.getStatus(userId)
         }
     }
 
     render() {
         return (
-            < Profile {...this.props} savePhoto={this.props.savePhoto} isOwnPage={!this.props.match.params.userId} profile={this.props.profile} status={this.props.status} changeStatus={this.props.changeStatus} />
+            < Profile {...this.props} savePhoto={this.props.savePhoto} isOwnPage={!this.props.match.params.userId}
+            profile={this.props.profile} status={this.props.status} changeStatus={this.props.changeStatus} />
         )
     }
 }

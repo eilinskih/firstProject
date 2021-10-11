@@ -52,11 +52,11 @@ class App extends React.Component {
 let mapStateToProps = (state) => ({ isInitialized: state.app.isInitialized })
 let AppContainer = compose(connect(mapStateToProps, { initialize }))(App);
 
-let AppRoot = (props) => {
+let AppRoot = () => {
   return <BrowserRouter>
     <Provider store={store}>
       <AppContainer />
-    </Provider>
+    </Provider> 
   </BrowserRouter>
 
 }

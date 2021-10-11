@@ -4,15 +4,18 @@ let initialState = {
     { id: 2, name: 'Olya' },
     { id: 3, name: 'Taisiya' }
   ],
-
   messagesData: [
     { message: 'How are you?' }
   ],
-
 };
-const dialogsReducer = (state = initialState, action) => {
+
+const SEND_MESSAGE = 'SEND_MESSAGE'
+
+type DialogsStateType = typeof initialState
+
+const dialogsReducer = (state: DialogsStateType = initialState, action: SendMessageType): DialogsStateType => {
   switch (action.type) {
-    case 'SEND-MESSAGE':
+    case 'SEND_MESSAGE':
       return {
         ...state,
         messagesData: [...state.messagesData, { message: action.message }]
@@ -23,9 +26,11 @@ const dialogsReducer = (state = initialState, action) => {
   }
 }
 
-export const sendMessage = (message) => {
-  return { type: 'SEND-MESSAGE', message }
+export const sendMessage = (message: string) => {
+  return { type: SEND_MESSAGE, message }
 }
+
+type SendMessageType = { type: typeof SEND_MESSAGE, message: string}
 
 
 export default dialogsReducer;
