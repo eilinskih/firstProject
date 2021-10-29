@@ -7,8 +7,8 @@ const SETSTATUS = 'SETSTATUS';
 const UPDATEUSERPHOTO = 'UPDATEUSERPHOTO';
 
 
-type PostType = {id: number, message: string}
-type ProfileStateType = { posts: PostType[], profile: null | GetProfileType, status: string }
+export type PostType = {id: number, message: string}
+export type ProfileStateType = { posts: PostType[], profile: null | GetProfileType, status: string }
 
 const initialState: ProfileStateType = {
   posts: [],
@@ -49,7 +49,7 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
       return state;
   }
 }
-
+ 
 
 //ACTION_CREATORS
 export const addPost = (postText: string): AddPostType => ({ type: ADD_POST, postText });

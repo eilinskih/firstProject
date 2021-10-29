@@ -47,6 +47,7 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.19",
     "@types/react-router-dom": "^5.3.1",
-    "@types/redux-form": "^8.3.2"
+    "@types/redux-form": "^8.3.2",
+    "@types/testing-library__jest-dom": "^5.14.1"
   }
 }

@@ -1,30 +1,31 @@
 import { createSelector } from "reselect"
+import { StateType } from "./redux-store"
 
-export const getUsersList = (state) => {
+export const getUsersList = (state: StateType) => {
     return state.usersPage.users
 }
 
-export const getPageSize = (state) => {
+export const getPageSize = (state: StateType) => {
     return state.usersPage.pageSize
 }
 
-export const getTotalCountUsers = (state) => {
+export const getTotalCountUsers = (state: StateType) => {
     return state.usersPage.totalCountUsers
 }
 
-export const getCurrentPage = (state) => {
+export const getCurrentPage = (state: StateType) => {
     return state.usersPage.currentPage
 }
 
-export const getIsFetchingValue = (state) => {
+export const getIsFetchingValue = (state: StateType) => {
     return state.usersPage.isFetchingValue
 }
 
-export const getFollowFetching = (state) => {
+export const getFollowFetching = (state: StateType) => {
     return state.usersPage.followFetching
 }
 
-export const getCurrentPortion = (state) => {
+export const getCurrentPortion = (state: StateType) => {
     return state.usersPage.currentPortion
 }
 

@@ -1,4 +1,5 @@
-import { usersAPI } from "./../api/api"
+import { UserItemType, usersAPI } from "../api/api"
+import { AppDispatch } from "./redux-store";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -6,9 +7,9 @@ const SETUSERS = 'SETUSERS';
 const SETCURRENTPAGE = 'SETCURRENTPAGE';
 const SETTOTALCOUNT = 'SETTOTALCOUNT';
 const ISFETCHING = 'ISFETCHING';
-const FOLLOWFETCHING = 'FOLLOWFETCHING'
+const FOLLOWFETCHING = 'FOLLOWFETCHING';
 
-let initialState = {
+const initialState: UsersStateType = {
     users: [],
     pageSize: 4,
     totalCountUsers: 0,
@@ -18,7 +19,18 @@ let initialState = {
     followFetching: []
 }
 
-const usersReducer = (state = initialState, action) => {
+type UsersStateType = {
+    users: UserItemType[]
+    pageSize: number
+    totalCountUsers: number
+    currentPage: number
+    currentPortion: number
+    isFetchingValue: boolean
+    followFetching: number[]
+    
+}
+
+const usersReducer = (state: UsersStateType = initialState, action: ActionsType) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -74,18 +86,33 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 // ACTION_CREATORS
-export const follow = (userId) => ({ type: FOLLOW, userId })
-export const unfollow = (userId) => ({ type: UNFOLLOW, userId })
-export const setUsers = (users) => ({ type: SETUSERS, users })
-export const setPage = (page, portion) => ({ type: SETCURRENTPAGE, page, portion })
-export const setTotalCountUsers = (totalCount) => ({ type: SETTOTALCOUNT, totalCount })
-export const isFetching = (isFetching) => ({ type: ISFETCHING, isFetching })
-export const isFollowFetching = (isFetching, userId) => ({ type: FOLLOWFETCHING, isFetching, userId })
+export const follow = (userId: number): FollowType => ({ type: FOLLOW, userId });
+type FollowType = {type: typeof FOLLOW, userId: number};
+export const unfollow = (userId: number): UnfollowType => ({ type: UNFOLLOW, userId });
+type UnfollowType = {type: typeof UNFOLLOW, userId: number};
+export const setUsers = (users: UserItemType[]): SetUsersType => ({ type: SETUSERS, users });
+type SetUsersType = {type: typeof SETUSERS, users: UserItemType[]};
+export const setPage = (page: number, portion: number): SetPageType => ({ type: SETCURRENTPAGE, page, portion });
+type SetPageType = {type: typeof SETCURRENTPAGE, page: number, portion: number};
+export const setTotalCountUsers = (totalCount: number): SetTotalCountUsersType => ({ type: SETTOTALCOUNT, totalCount });
+type SetTotalCountUsersType = {type: typeof SETTOTALCOUNT, totalCount: number};
+export const isFetching = (isFetching: boolean): IsFetchingType => ({ type: ISFETCHING, isFetching });
+type IsFetchingType = {type: typeof ISFETCHING, isFetching: boolean};
+export const isFollowFetching = (isFetching: boolean, userId: number): IsFollowFetchingType => ({ type: FOLLOWFETCHING, isFetching, userId });
+type IsFollowFetchingType = { type: typeof FOLLOWFETCHING, isFetching: boolean, userId: number};
 
+type ActionsType = 
+| FollowType
+| UnfollowType
+| SetUsersType
+| SetPageType
+| SetTotalCountUsersType
+| IsFetchingType
+| IsFollowFetchingType
 
 //THUNK_CREATORS
-export const getUsers = (currentPage, pageSize) => {
-    return (dispatch) => {
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return (dispatch: AppDispatch) => {
         dispatch(isFetching(true));
         usersAPI.getUsers(currentPage, pageSize)
             .then(data => {
@@ -97,8 +124,8 @@ export const getUsers = (currentPage, pageSize) => {
     }
 }
 
-export const followUser = (userId) => {
-    return (dispatch) => {
+export const followUser = (userId: number) => {
+    return (dispatch: AppDispatch) => {
         dispatch(isFollowFetching(true, userId));
         usersAPI.followUser(userId)
             .then(data => {
@@ -110,8 +137,8 @@ export const followUser = (userId) => {
     }
 }
 
-export const unfollowUser = (userId) => {
-    return (dispatch) => {
+export const unfollowUser = (userId: number) => {
+    return (dispatch: AppDispatch) => {
         dispatch(isFollowFetching(true, userId));
         usersAPI.unfollowUser(userId)
             .then(data => {

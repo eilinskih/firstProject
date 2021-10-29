@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import { BrowserRouter, Route } from 'react-router-dom';
-import HeaderContainer from './components/Header/HeaderContainer';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import Header from './components/Header/Header';
+import { useDispatch, useSelector } from 'react-redux';
 import { initialize } from './Redux/appReducer'
 import Preloader from './components/Preloader/Preloader';
 import { Provider } from 'react-redux';
-import store from './Redux/redux-store';
+import store, { StateType } from './Redux/redux-store';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const News = React.lazy(() => import('./components/News/News'));
@@ -19,17 +18,17 @@ const Settings = React.lazy(() => import('./components/Settings/Settings'));
 const Login = React.lazy(() => import('./components/Login/Login'));
 
 
-class App extends React.Component {
+const App: React.FC = () => {
+  const dispatch = useDispatch();
+const isInitialized = useSelector<StateType, boolean>((state) => {return state.app.isInitialized});
+  useEffect(() => {
+    dispatch(initialize())
+  }, [isInitialized, dispatch]);
 
-  componentDidMount() {
-    this.props.initialize()
-  }
-
-  render() {
-    if (!this.props.isInitialized) return <Preloader />
+    if (!isInitialized) return <Preloader />
     return (
       <div className="wrapper">
-        <HeaderContainer />
+        <Header />
         <Navbar />
         <div className="wrapper_content">
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
@@ -46,16 +45,12 @@ class App extends React.Component {
         </div>
       </div>
     );
-  }
-}
+};
 
-let mapStateToProps = (state) => ({ isInitialized: state.app.isInitialized })
-let AppContainer = compose(connect(mapStateToProps, { initialize }))(App);
-
-let AppRoot = () => {
+const AppRoot: React.FC = () => {
   return <BrowserRouter>
     <Provider store={store}>
-      <AppContainer />
+      <App />
     </Provider> 
   </BrowserRouter>
 

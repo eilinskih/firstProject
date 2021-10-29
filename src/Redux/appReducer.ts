@@ -1,13 +1,15 @@
-import { authProfile } from "./authReducer"
-import { AppDispatch } from "./redux-store"
+import { ThunkAction } from "redux-thunk";
 
-const INITIALIZE = 'INITIALIZE'
+import { authProfile } from "./authReducer";
+import { StateType } from "./redux-store";
+
+const INITIALIZE = 'INITIALIZE';
 
 const initialState = {
   isInitialized: false
-}
+};
 
-type AuthStateType = typeof initialState
+export type AuthStateType = typeof initialState;
 
 const authReducer = (state: AuthStateType = initialState, action: SetInitializeType): AuthStateType => {
 
@@ -19,21 +21,21 @@ const authReducer = (state: AuthStateType = initialState, action: SetInitializeT
       }
     default:
       return state;
-  }
-}
+  };
+};
 
 // ACTION_CREATORS
-const setInitialize = (): SetInitializeType => {
+export const setInitialize = (): SetInitializeType => {
   return { type: INITIALIZE }
-}
+};
 
-type SetInitializeType = {type: typeof INITIALIZE}
+type SetInitializeType = {type: typeof INITIALIZE};
 
 //THUNK_CREATORS
-export const initialize = () => (dispatch: AppDispatch) => {
-  let promise = dispatch(authProfile())
-  Promise.all([promise])
+export const initialize = (): ThunkAction<Promise<void>, StateType, unknown, SetInitializeType> => async (dispatch) => {
+  const promise = dispatch(authProfile())
+  await Promise.all([promise])
     .then(() => dispatch(setInitialize()))
-}
+};
 
 export default authReducer;

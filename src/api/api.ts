@@ -1,27 +1,27 @@
 import axios from 'axios'
-
-type UserItemType = {
+ 
+export type UserItemType = {
   name: string,
   id: number,
   photos: {
     small: null | string,
     large: null | string
-  },
+  }, 
   status: null | string,
   followed: boolean
-}
+};
 
 type GetUsersResType = {
   items: UserItemType[],
   totalCount: number,
   error: null | string
-}
+};
 
 type UnfollowDelete ={
     resultCode: number,
     messages: string[],
     data: object
-}
+};
 
 export type GetProfileType = {
   userId: number,
@@ -39,12 +39,12 @@ export type GetProfileType = {
     mainLink: string
   },
   photos: PhotosType
-}
+};
 
 export type PhotosType = {
   small: null | string,
   large: null | string
-  }
+};
 
 type MeType = {
     resultCode: number,
@@ -54,7 +54,7 @@ type MeType = {
       email: string,
       login: string
     }
-}
+};
 
 type LoginType = {
     resultCode: number,
@@ -62,31 +62,31 @@ type LoginType = {
     data: {
       userId: number
     }
-}
+};
 
 type LogOutType = {
   resultCode: number,
   messages: string[],
   data: object
-}
+};
 
 type SetStatusType = {
     resultCode: number
     messages: string[]
     data: object
-}
+};
 
 type SavePhotoType = {
   resultCode: number
   messages: string[]
   data: {photos: PhotosType}
-}
+};
 
 const instanceAxios = axios.create({
   withCredentials: true,
   baseURL: `https://social-network.samuraijs.com/api/1.0/`,
   headers: { "API-KEY": "55037afb-e05e-41fe-90ed-2627a5f335b2" }
-})
+});
 
 export const usersAPI = {
   async getUsers(currentPage = 1, pageSize = 5) {
@@ -139,9 +139,9 @@ export const authAPI = {
     return response.data;
   },
 
-  login(email: string, password: string, rememberMe: boolean) {
-    return instanceAxios.post<LoginType>('auth/login', { email, password, rememberMe })
-
+  async login(email: string, password: string, rememberMe: boolean) {
+    const response = await instanceAxios.post<LoginType>('auth/login', { email, password, rememberMe });
+    return response.data
   },
 
   async logout() {
